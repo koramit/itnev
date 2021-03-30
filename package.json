@@ -1,0 +1,23 @@
+{
+  "name": "itnev",
+  "version": "1.0.0",
+  "description": "itnev - agent",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koramit/itnev.git"
+  },
+  "author": "Koramit Pichanaharee <koramit@lullabears.co> (https://github.com/koramit)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/koramit/itnev/issues"
+  },
+  "homepage": "https://github.com/koramit/itnev#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "selenium-webdriver": "^4.0.0-beta.2"
+  }
+}
