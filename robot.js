@@ -50,41 +50,41 @@ async function task(browser) {
     for(let i = 0; i < promises.length; i++) {
         patients.push({});
 
-        promises[i].findElement({ css: 'div.badge.med > p' })
-            .then(node => node.getText().then(text => patients[i].medicine = text.trim() == 'M'))
-            .catch(error => patients[i].medicine = false);
+        // promises[i].findElement({ css: 'div.badge.med > p' })
+        //     .then(node => node.getText().then(text => patients[i].medicine = text.trim() == 'M'))
+        //     .catch(error => patients[i].medicine = false);
 
-        promises[i].findElement({ css: 'span.position-number' }).then(node => node.getText().then(text => {
-            patients[i].bed = text.replaceAll("\n", '').trim();
-        })).catch(error => error);
+        // promises[i].findElement({ css: 'span.position-number' }).then(node => node.getText().then(text => {
+        //     patients[i].bed = text.replaceAll("\n", '').trim();
+        // })).catch(error => error);
 
         promises[i].findElement({ css: 'span.name' })
             .then(node => node.getText().then(text => patients[i].name = text.replaceAll("\n", '').trim()));
 
-        promises[i].findElement({ css: 'span.en' })
-            .then(node => node.getText().then(text => patients[i].hn = text.replaceAll("\n", '').trim().replace('HN', '')));
+        // promises[i].findElement({ css: 'span.en' })
+        //     .then(node => node.getText().then(text => patients[i].hn = text.replaceAll("\n", '').trim().replace('HN', '')));
 
-        promises[i].findElement({ css: 'p.value' })
-            .then(node => node.getText().then(text => {
-                patients[i].dx = text.replaceAll("\n", '').trim();
-                if (patients[i].dx == '-') {
-                    patients[i].dx = null;
-                }
-        }));
+        // promises[i].findElement({ css: 'p.value' })
+        //     .then(node => node.getText().then(text => {
+        //         patients[i].dx = text.replaceAll("\n", '').trim();
+        //         if (patients[i].dx == '-') {
+        //             patients[i].dx = null;
+        //         }
+        // }));
 
-        promises[i].findElement({ css: 'div.zone > p' })
-            .then(node => node.getText().then(text => {
-                patients[i].counter = text.replaceAll("\n", '').trim();
-                if (! patients[i].medicine && patients[i].counter == 'C4') {
-                    patients[i].medicine = true;
-                }
-        }));
+        // promises[i].findElement({ css: 'div.zone > p' })
+        //     .then(node => node.getText().then(text => {
+        //         patients[i].counter = text.replaceAll("\n", '').trim();
+        //         if (! patients[i].medicine && patients[i].counter == 'C4') {
+        //             patients[i].medicine = true;
+        //         }
+        // }));
 
-        promises[i].findElement({ css: 'p.time' })
-            .then(node => node.getText().then(text => patients[i].los = text.replaceAll("\n", '').trim()));
+        // promises[i].findElement({ css: 'p.time' })
+        //     .then(node => node.getText().then(text => patients[i].los = text.replaceAll("\n", '').trim()));
 
-        promises[i].findElement({ css: 'div.round-rect > p' })
-            .then(node => node.getText().then(text => patients[i].remark = text.replaceAll("\n", '').trim()));
+        // promises[i].findElement({ css: 'div.round-rect > p' })
+        //     .then(node => node.getText().then(text => patients[i].remark = text.replaceAll("\n", '').trim()));
     }
     console.log('wait for prepare patients for 10 secs');
     await browser.sleep(10000); // wait for operation
@@ -101,41 +101,41 @@ async function task(browser) {
                     .then(rows => rows.map(row => row));
 
     let cases = [];
-    for(let i = 0; i < promises.length; i++) {
-        cases.push({});
+    // for(let i = 0; i < promises.length; i++) {
+    //     cases.push({});
 
-        promises[i].findElement({ css: 'mat-cell.mat-column-hn' }).getText().then(text => {
-            cases[i].hn = text.replaceAll("\n", '').trim();
-        });
-        promises[i].findElement({ css: 'mat-cell.mat-column-movementType' }).getText().then(text => {
-            cases[i].movement = text.replaceAll("\n", '').trim();
-        });
-        promises[i].findElement({ css: 'mat-cell.mat-column-cc' }).getText().then(text => {
-            cases[i].cc = text.replaceAll("\n", '').trim();
-        });
-        promises[i].findElement({ css: 'mat-cell.mat-column-diag' }).getText().then(text => {
-            cases[i].dx = text.replaceAll("\n", '').trim();
-        });
-        promises[i].findElement({ css: 'mat-cell.mat-column-scheme' }).getText().then(text => {
-            cases[i].insurance = text.replaceAll("\n", '').trim();
-        });
-        promises[i].findElement({ css: 'mat-cell.mat-column-Check-in' }).getText().then(text => {
-            cases[i].in_date = text.replaceAll("\n", '').trim();
-        });
-        promises[i].findElement({ css: 'mat-cell.mat-column-Check-in-time' }).getText().then(text => {
-            cases[i].in_time = text.replaceAll("\n", '').trim();
-        });
-        promises[i].findElement({ css: 'mat-cell.mat-column-Check-out' }).getText().then(text => {
-            cases[i].out_date = text.replaceAll("\n", '').trim();
-        });
-        promises[i].findElement({ css: 'mat-cell.mat-column-Check-out-time' }).getText().then(text => {
-            cases[i].out_time = text.replaceAll("\n", '').trim();
-        });
+    //     promises[i].findElement({ css: 'mat-cell.mat-column-hn' }).getText().then(text => {
+    //         cases[i].hn = text.replaceAll("\n", '').trim();
+    //     });
+    //     promises[i].findElement({ css: 'mat-cell.mat-column-movementType' }).getText().then(text => {
+    //         cases[i].movement = text.replaceAll("\n", '').trim();
+    //     });
+    //     promises[i].findElement({ css: 'mat-cell.mat-column-cc' }).getText().then(text => {
+    //         cases[i].cc = text.replaceAll("\n", '').trim();
+    //     });
+    //     promises[i].findElement({ css: 'mat-cell.mat-column-diag' }).getText().then(text => {
+    //         cases[i].dx = text.replaceAll("\n", '').trim();
+    //     });
+    //     promises[i].findElement({ css: 'mat-cell.mat-column-scheme' }).getText().then(text => {
+    //         cases[i].insurance = text.replaceAll("\n", '').trim();
+    //     });
+    //     promises[i].findElement({ css: 'mat-cell.mat-column-Check-in' }).getText().then(text => {
+    //         cases[i].in_date = text.replaceAll("\n", '').trim();
+    //     });
+    //     promises[i].findElement({ css: 'mat-cell.mat-column-Check-in-time' }).getText().then(text => {
+    //         cases[i].in_time = text.replaceAll("\n", '').trim();
+    //     });
+    //     promises[i].findElement({ css: 'mat-cell.mat-column-Check-out' }).getText().then(text => {
+    //         cases[i].out_date = text.replaceAll("\n", '').trim();
+    //     });
+    //     promises[i].findElement({ css: 'mat-cell.mat-column-Check-out-time' }).getText().then(text => {
+    //         cases[i].out_time = text.replaceAll("\n", '').trim();
+    //     });
 
-        promises[i].findElement({ css: 'mat-cell.mat-column-dispose' }).getText().then(text => {
-            cases[i].outcome = text.replaceAll("\n", '').trim();
-        });
-    }
+    //     promises[i].findElement({ css: 'mat-cell.mat-column-dispose' }).getText().then(text => {
+    //         cases[i].outcome = text.replaceAll("\n", '').trim();
+    //     });
+    // }
 
     console.log('wait for prepare cases for 10 secs');
     await browser.sleep(10000);
