@@ -159,10 +159,15 @@ const grabProfile = async function (stay) {
                 .then(node => node.getText())
                 .then(text => profile.en = text.replaceAll("\n", ' | ').replace('EN : ', '').trim())
                 .catch(() => profile.en = null);
-    await browser.findElements({css: 'div.timestamp'})
-                .then(nodes => nodes.pop().getText())
-                .then(text => profile.encountered_at = text)
-                .catch(() => profile.encountered_at = null);
+    await browser.executeScript(`
+                    let events = document.querySelectorAll('div.event');
+                    for(var i = 0; i < events.length; i++) {
+                        if (events[i].textContent.indexOf('Check-in Time') !== -1) {
+                            return events[i].querySelector('.timestamp').textContent;
+                        }
+                    }
+                `).then(text => profile.encountered_at = text.replaceAll("\n", '').trim())
+                .catch((error) => {console.log(error);profile.encountered_at = null;});
     await browser.findElement({css: '.scheme-box > div:nth-child(1)'})
                 .then(node => node.getText())
                 .then(text => profile.insurance = text.replaceAll("\n", ' | ').trim())
